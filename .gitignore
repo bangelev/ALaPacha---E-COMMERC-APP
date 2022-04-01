@@ -1,0 +1,14 @@
+# dependencies
+/node_modules/
+
+
+# misc
+/backend/config/.env
+/backend/productSeeds.json
+/backend/todo_and_check.md
+/markup/
+
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
