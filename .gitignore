@@ -5,6 +5,7 @@
 # misc
 /backend/config/.env
 /markup/
+/vscode/
 
 
 npm-debug.log*
