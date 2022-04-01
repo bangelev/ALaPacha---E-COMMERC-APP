@@ -4,8 +4,6 @@
 
 # misc
 /backend/config/.env
-/backend/productSeeds.json
-/backend/todo_and_check.md
 /markup/
 
 
