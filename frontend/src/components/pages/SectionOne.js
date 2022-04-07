@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const SectionOne = () => {
   return (
     <>
-      <section className="px-5 pb-5" id="sectionOne">
+      <section className="px-5 pb-5">
         <div className="container bg-dark text-muted">
           <div className="row">
             <div className="col-md-6 px-0 py-3">

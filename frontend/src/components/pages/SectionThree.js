@@ -15,7 +15,9 @@ const SectionThree = () => {
               />
             </div>
             <div className="col-md-6 d-flex flex-column justify-content-around align-items-center p-5">
-              <h1 className="text-center">Unforgettable party weekends</h1>
+              <h1 className="text-center border-bottom border-3">
+                Unforgettable Weekend Parties
+              </h1>
               <p className="text-end">
                 Our chefs will make you fresh and delicious meals, from
                 breakfast to dinner.

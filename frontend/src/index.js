@@ -1,18 +1,22 @@
 import React from 'react'
-
 import * as ReactDOMClient from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+
+import store from './store'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
 const container = document.getElementById('app')
 ReactDOMClient.createRoot(container).render(
-  <React.StrictMode>
-    <BrowserRouter>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
-  </React.StrictMode>
+    </Provider>
+  </BrowserRouter>
+  // </React.StrictMode>
 )
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

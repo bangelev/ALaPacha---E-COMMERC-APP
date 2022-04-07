@@ -23,11 +23,11 @@ app.use('/api/v1', products)
 app.use('/api/v1', user)
 app.use('/api/v1', orders)
 
-app.get('/', (req, res) => {
-    res.status(200).json({
-        message: 'It is OK',
-    })
-})
+// app.get('*', (req, res) => {
+//     res.status(200).json({
+//         message: 'It is OK',
+//     })
+// })
 
 app.use(errorsMiddleware)
 module.exports = app
