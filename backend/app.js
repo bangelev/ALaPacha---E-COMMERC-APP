@@ -3,7 +3,7 @@ const errorsMiddleware = require('./middlewares/errorsMiddleware')
 const path = require('path')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-
+const fileUpload = require('express-fileupload')
 require('dotenv').config({
     path: path.join(__dirname, './config/.env'),
 })
@@ -12,6 +12,7 @@ const app = express()
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
+app.use(fileUpload())
 
 //import all routes
 const products = require('./routes/products')

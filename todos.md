@@ -2,3 +2,6 @@
 3. Not found route frontend
 4. href for page navigation ex.#contact
 5. Fonts
+6. Error messages find replacement or adjust AlertDismissable - use React-Toastify
+7. send HTML for reset password - ne mosesh dodeka ne imas domain da postavish anker tag - ili mozish so get.host........
+8. Check localhost 3000 or 4000 from send mail

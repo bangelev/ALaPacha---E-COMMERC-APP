@@ -19,10 +19,10 @@ const {
 const router = express.Router()
 
 router.route('/register').post(registerUser)
-router.route('/login').get(loginUser)
+router.route('/login').post(loginUser)
 router.route('/logout').get(logoutUser)
 router.route('/password/forgot').post(forgotPassword)
-router.route('/password/reset/:token').get(resetPassword)
+router.route('/password/reset/:token').put(resetPassword)
     //update user profile
 router.route('/profile').get(isAuthenticated, userProfile)
 router.route('/password/update').put(isAuthenticated, updatePassword)

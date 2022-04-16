@@ -1,5 +1,6 @@
 const app = require('./app')
 const connectMongoDB = require('./config/database')
+const cloudinary = require('cloudinary').v2
 
 // synchronous errors
 process.on('uncaughtException', (err) => {
@@ -7,7 +8,11 @@ process.on('uncaughtException', (err) => {
     console.log('Shutting down due to uncaught exception')
     process.exit(1)
 })
-
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+})
 connectMongoDB()
 
 const server = app.listen(process.env.PORT, () => {

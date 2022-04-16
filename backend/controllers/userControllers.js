@@ -4,15 +4,28 @@ const ErrorHandler = require('../utils/ErrorHandler')
 const sendToken = require('../utils/sendToken')
 const sendEmail = require('../utils/sendEmail')
 const crypto = require('crypto')
+const cloudinary = require('cloudinary').v2
 
 // register a new user
 exports.registerUser = catchAsync(async(req, res, next) => {
-    const newUserData = req.body
-    console.log(newUserData)
+    const result = await cloudinary.uploader.upload(req.body.avatar, {
+        folder: 'LaLaPacha',
+        width: 150,
+        crop: 'scale',
+    })
+    const { name, email, password } = req.body
 
-    const newUser = await User.create(newUserData)
+    const user = await User.create({
+        name,
+        email,
+        password,
+        avatar: {
+            public_id: result.public_id,
+            url: result.secure_url, // contains http protocol
+        },
+    })
 
-    sendToken(newUser, 200, res)
+    sendToken(user, 200, res)
 })
 
 //login user
@@ -59,19 +72,25 @@ exports.forgotPassword = catchAsync(async(req, res, next) => {
     const resetToken = user.generateResetPasswordToken()
 
     await user.save()
+        //no frontend - testing
+        //     const resetURL = `${req.protocol}:/${req.get(
+        //     'host'
+        //   )}/api/v1/password/reset/${resetToken}`
 
-    const resetURL = `${req.protocol}://${req.get(
+    // for frontend testing & production
+    const resetURL = `${req.protocol}:/${req.get(
     'host'
-  )}/api/v1/password/reset/${resetToken}`
+  )}/password/reset/${resetToken}`
 
     const message = `Your password reset token is as follow:\n\n${resetURL}\n\nIf you have not requested this email, then ignore it.`
 
     try {
-        sendEmail({
+        await sendEmail({
             email: user.email,
             subject: `LaLaPacha password recovery `,
             message,
-            html: `<form action=${resetURL}><div><h2>Click below to reset password</h2><button>RESET PASSWORD</button></div></form>`,
+            html: `<h2>Click below to reset password</h2><a href=${resetURL}><button>Reset password</button></a>`,
+            // html: `${resetURL}`,
         })
         res.status(200).json({
             success: true,
@@ -151,18 +170,28 @@ exports.updatePassword = catchAsync(async(req, res, next) => {
 
 //update user profile =>api/v1/profile/update
 exports.updateProfile = catchAsync(async(req, res, next) => {
-    const user = await User.findById(req.user.id)
-
-    if (!user) {
-        return next(new ErrorHandler(`You must to login first`))
-    }
+    console.log('Update Route')
 
     const newUserData = {
         name: req.body.name,
         email: req.body.email,
     }
 
-    //TODO: Cloudinary image
+    if (req.body.avatar !== '') {
+        const user = await User.findById(req.user.id)
+        const prevImgId = user.avatar.public_id
+        await cloudinary.uploader.destroy(prevImgId)
+
+        const result = await cloudinary.uploader.upload(req.body.avatar, {
+            folder: 'LaLaPacha',
+            width: 150,
+            crop: 'scale',
+        })
+        newUserData.avatar = {
+            public_id: result.public_id,
+            url: result.secure_url,
+        }
+    }
 
     const updatedUser = await User.findByIdAndUpdate(req.user.id, newUserData, {
         new: true,
@@ -172,7 +201,6 @@ exports.updateProfile = catchAsync(async(req, res, next) => {
     res.status(200).json({
         success: true,
         message: 'User successfully updated',
-        updatedUser,
     })
 })
 
