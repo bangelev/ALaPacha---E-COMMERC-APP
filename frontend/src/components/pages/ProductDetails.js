@@ -16,13 +16,13 @@ const ProductDetails = () => {
   )
   let { id } = useParams()
 
-  console.log('RENDER', error)
+  // console.log('RENDER', error)
 
   useEffect(() => {
-    console.log('USE EFFECT- BEFORE DISPATCH', error)
+    // console.log('USE EFFECT- BEFORE DISPATCH', error)
     dispatch(getProductDetails(id))
 
-    console.log('USE EFFECT - AFTER DISPATCH', error)
+    // console.log('USE EFFECT - AFTER DISPATCH', error)
     //eslint-disable-next-line
   }, [])
   return (

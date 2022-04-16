@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllProducts } from '../../redux/actions/productActions'
+import { getAllProducts, clearError } from '../../redux/actions/productActions'
+import { useError } from '../../customHooks/alerts'
 
 import AccordionMenu from './AccordionMenu'
 import ProductCard from './ProductCard'
-import AlertDismissible from '../layout/AlertDismissible'
 import MetaData from '../layout/MetaData'
 
 import Loader from '../layout/Loader'
@@ -30,8 +30,14 @@ const MenuPage = () => {
   const dispatch = useDispatch()
   const { loading, products, error } = useSelector((state) => state.products)
 
+  const alertError = useError()
+
   useEffect(() => {
     dispatch(getAllProducts())
+    if (error) {
+      alertError(error)
+      dispatch(clearError())
+    }
 
     //eslint-disable-next-line
   }, [error])
@@ -54,8 +60,6 @@ const MenuPage = () => {
       </div>
       {loading ? (
         <Loader />
-      ) : error ? (
-        <AlertDismissible variant={'warning'} message={error} />
       ) : (
         categories.map((category) => (
           <AccordionMenu category={category} key={category}>

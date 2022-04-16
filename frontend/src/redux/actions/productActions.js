@@ -31,10 +31,8 @@ export const getAllProducts = () => async(dispatch) => {
 export const getProductDetails = (id) => async(dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
-        console.log('FROM ACTION BEFORE GET REQUEST')
-        const { data } = await axios.get(`/api/v1/products/${id}`)
 
-        console.log('FROM ACTION AFTER GET REQUEST')
+        const { data } = await axios.get(`/api/v1/products/${id}`)
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,

@@ -1,7 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { logoutUser } from '../../redux/actions/userActions'
 
 const Header = () => {
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.auth)
+  const logoutHandler = () => {
+    dispatch(logoutUser())
+  }
+
   return (
     <>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top px-5">
@@ -27,7 +35,7 @@ const Header = () => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="/">
+                  <Link className="nav-link " aria-current="page" to="/">
                     About
                   </Link>
                 </li>
@@ -41,41 +49,67 @@ const Header = () => {
                     Cart
                   </Link>
                 </li>
-                <li className="nav-item dropdown">
-                  <Link
-                    className="nav-link dropdown-toggle"
-                    to="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Profile
-                  </Link>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <li>
-                      <Link className="dropdown-item" to="#">
-                        Action
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="#">
-                        Another action
-                      </Link>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="#">
-                        Something else here
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
+                {!user ? (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">
+                      Login
+                    </Link>
+                  </li>
+                ) : (
+                  <li className="nav-item dropdown">
+                    <Link
+                      className="nav-link dropdown-toggle"
+                      to=""
+                      id="navbarDropdown"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <figure className="avatar avatar-nav">
+                        <img
+                          src={user.avatar && user.avatar.url}
+                          alt={user && user.name}
+                          className="rounded-circle"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="bottom"
+                          title={user.name}
+                        />
+                      </figure>
+                    </Link>
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdown"
+                    >
+                      <li>
+                        <Link className="dropdown-item" to="/">
+                          Dashboard
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" to="#!">
+                          My orders
+                        </Link>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" to="/profile">
+                          Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to="/"
+                          onClick={logoutHandler}
+                        >
+                          Logout
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
