@@ -14,7 +14,7 @@ const Header = () => {
     <>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top px-5">
         <div className="container-fluid">
-          <Link className="navbar-brand img-fluid text-warning" to="about">
+          <Link className="navbar-brand img-fluid text-warning" to="/">
             <img src="/images/logo_icon.png" alt="" /> &nbsp;La LaPacha
           </Link>
           <div>
@@ -45,7 +45,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="#">
+                  <Link className="nav-link" to="/cart">
                     Cart
                   </Link>
                 </li>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import MetaData from '../layout/MetaData'
+import MetaData from '../../layout/MetaData'
 
 import SectionOne from './SectionOne'
 import SectionTwo from './SectionTwo'

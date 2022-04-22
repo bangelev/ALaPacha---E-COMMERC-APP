@@ -6,19 +6,12 @@ const AccordionMenu = ({ category, children }) => {
     <>
       <Accordion alwaysOpen>
         <Accordion.Item eventKey={category}>
-          <Accordion.Header className="ProductOne">
+          <Accordion.Header>
             {category.charAt(0).toUpperCase() + category.slice(1)}
           </Accordion.Header>
-          <Accordion.Body className="">
+          <Accordion.Body className="bg-dark">
             <div className="container">
-              <div className="row">
-                {/* {products
-                  .filter((product) => product.category === category)
-                  .map((product) => (
-                    <Product key={product._id} product={product} />
-                  ))} */}
-                {children}
-              </div>
+              <div className="row">{children}</div>
             </div>
           </Accordion.Body>
         </Accordion.Item>

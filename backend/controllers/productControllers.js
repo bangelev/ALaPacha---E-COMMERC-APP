@@ -19,7 +19,9 @@ exports.getSingleProduct = catchAsync(async(req, res, next) => {
     const productId = req.params.id
 
     const product = await Product.findById(productId)
-
+    if (!product) {
+        next(new ErrorHandler('No such product', 404))
+    }
     res.status(200).json({
         success: true,
         message: 'Product retrieved successfully',

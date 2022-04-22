@@ -109,3 +109,68 @@ body {
     height: 1.8rem;
     width: 1.8rem;
 }
+
+#cardPoint {
+    cursor: pointer;
+}
+
+
+/* Ratings */
+
+#no_of_reviews {
+    font-size: 0.85rem;
+    color: grey;
+    margin-left: 0.5rem;
+}
+
+.star-ratings {
+    unicode-bidi: bidi-override;
+    color: #ccc;
+    font-size: 25px;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.fill-ratings {
+    color: #e7711b;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+
+/* Stars */
+
+.rating {
+    display: inline-block;
+    unicode-bidi: bidi-override;
+    color: #888888;
+    font-size: 25px;
+    height: 25px;
+    width: auto;
+    margin: 0;
+    position: relative;
+    padding: 0;
+}
+
+.rating-upper {
+    color: #c52b2f;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.rating-lower {
+    padding: 0;
+    display: flex;
+    z-index: 0;
+}

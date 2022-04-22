@@ -11,9 +11,9 @@ import ProtectedRoute from './components/routes/ProtectedRoute'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 
-import AboutPage from './components/pages/AboutPage'
-import MenuPage from './components/pages/MenuPage'
-import ProductDetails from './components/pages/ProductDetails'
+import AboutPage from './components/pages/about/AboutPage'
+import MenuPage from './components/pages/menu/MenuPage'
+
 // user imports
 import Login from './components/pages/user/Login'
 import Register from './components/pages/user/Register'
@@ -24,8 +24,8 @@ import NewPassword from './components/pages/user/NewPassword'
 import Profile from './components/pages/user/Profile'
 import UpdateProfile from './components/pages/user/UpdateProfile'
 import UpdatePassword from './components/pages/user/UpdatePassword'
-// import UpPr from './components/pages/user/UpPr'
-
+//cart imports
+import CartModal from './components/pages/cart/CartModal'
 function App() {
   useEffect(() => {
     store.dispatch(loadCurrentUser())
@@ -34,12 +34,12 @@ function App() {
     <div className="App bg-light">
       <Header />
 
-      <div className="container " id="sectionOne">
+      <div className="container" id="sectionOne">
         <ToastContainer />
         <Routes>
           <Route path="/" element={<AboutPage />} />
           <Route path="products" element={<MenuPage />} />
-          <Route path="products/:id" element={<ProductDetails />} />
+
           {/* USER Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -67,6 +67,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <UpdatePassword />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <CartModal />
               </ProtectedRoute>
             }
           />

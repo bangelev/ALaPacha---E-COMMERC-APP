@@ -1,14 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
+import { Button, Modal } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllProducts, clearError } from '../../redux/actions/productActions'
-import { useError } from '../../customHooks/alerts'
+import {
+  getAllProducts,
+  clearError,
+} from '../../../redux/actions/productActions'
+import { useError } from '../../../customHooks/alerts'
+import { useCalculatePrices } from '../../../customHooks/cartHooks'
 
 import AccordionMenu from './AccordionMenu'
 import ProductCard from './ProductCard'
-import MetaData from '../layout/MetaData'
+import MetaData from '../../layout/MetaData'
+import CartModal from '../../pages/cart/CartModal'
 
-import Loader from '../layout/Loader'
+import Loader from '../../layout/Loader'
 
 const categories = [
   'breakfast',
@@ -27,8 +33,12 @@ const categories = [
 ]
 
 const MenuPage = () => {
+  const [itemsPrice] = useCalculatePrices()
+  const [show, setShow] = useState(false)
+
   const dispatch = useDispatch()
   const { loading, products, error } = useSelector((state) => state.products)
+  // const { cartItems } = useSelector((state) => state.cart)
 
   const alertError = useError()
 
@@ -45,6 +55,7 @@ const MenuPage = () => {
   return (
     <>
       <MetaData title="Menu" />
+
       <div className="card mb-5 ">
         <img
           src="\images\sebastian-schuppik-H7xTpvBjJS4-unsplash.jpg"
@@ -58,6 +69,7 @@ const MenuPage = () => {
           </h2>
         </div>
       </div>
+
       {loading ? (
         <Loader />
       ) : (
@@ -71,6 +83,31 @@ const MenuPage = () => {
           </AccordionMenu>
         ))
       )}
+      <>
+        <div className="d-grid gap-2 fixed-bottom">
+          <Button variant="warning" size="lg" onClick={() => setShow(true)}>
+            Open cart - total <span>{itemsPrice} $</span>
+          </Button>
+        </div>
+
+        <Modal
+          show={show}
+          onHide={() => setShow(false)}
+          // fullscreen={true}
+          dialogClassName="modal-90w"
+          aria-labelledby="example-custom-modal-styling-title"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="example-custom-modal-styling-title">
+              Your order
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <CartModal />
+          </Modal.Body>
+        </Modal>
+      </>
     </>
   )
 }
