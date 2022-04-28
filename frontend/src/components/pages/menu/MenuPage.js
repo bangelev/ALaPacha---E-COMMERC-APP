@@ -85,8 +85,15 @@ const MenuPage = () => {
       )}
       <>
         <div className="d-grid gap-2 fixed-bottom">
-          <Button variant="warning" size="lg" onClick={() => setShow(true)}>
-            Open cart - total <span>{itemsPrice} $</span>
+          <Button
+            variant="warning"
+            size="lg"
+            onClick={() => setShow(true)}
+            disabled={!itemsPrice ? true : false}
+          >
+            {itemsPrice === 0
+              ? 'Your cart is empty'
+              : `Open cart - total ${itemsPrice} $`}
           </Button>
         </div>
 

@@ -58,7 +58,7 @@ const ProductCard = ({ product }) => {
                   style={{ fontSize: '11px' }}
                   className="text-muted text-end m-0"
                 >
-                  {product.description}{' '}
+                  {product.description}
                 </p>
                 <StarRating product={product} />
               </div>
@@ -69,7 +69,7 @@ const ProductCard = ({ product }) => {
           <Modal
             show={show}
             onHide={handleClose}
-            backdrop="static"
+            // backdrop="static"
             keyboard={false}
             centered
           >
@@ -144,9 +144,9 @@ const ProductCard = ({ product }) => {
               </>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+              {/* <Button variant="secondary" onClick={handleClose}>
                 Close
-              </Button>
+              </Button> */}
             </Modal.Footer>
           </Modal>
         </>

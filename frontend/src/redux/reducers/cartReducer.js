@@ -1,4 +1,8 @@
-import { ADD_ITEM_TO_CART, REMOVE_FROM_CART } from '../constants/cardConstants'
+import {
+    ADD_ITEM_TO_CART,
+    REMOVE_FROM_CART,
+    SAVE_SHIPPING_INFO,
+} from '../constants/cardConstants'
 
 export const cartReducer = (state = { cartItems: [] }, action) => {
     switch (action.type) {
@@ -6,14 +10,14 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
             const item = action.payload
 
             const isItemExists = state.cartItems.find(
-                (i) => i.productID === item.productID
+                (i) => i.product === item.product
             )
 
             if (isItemExists) {
                 return {
                     ...state,
                     cartItems: state.cartItems.map((i) =>
-                        i.productID === isItemExists.productID ? item : i
+                        i.product === isItemExists.product ? item : i
                     ),
                 }
             } else {
@@ -26,8 +30,13 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
             return {
                 ...state,
                 cartItems: state.cartItems.filter(
-                    (item) => item.productID !== action.payload
+                    (item) => item.product !== action.payload
                 ),
+            }
+        case SAVE_SHIPPING_INFO:
+            return {
+                ...state,
+                shippingInfo: action.payload,
             }
 
         default:

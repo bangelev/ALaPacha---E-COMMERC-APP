@@ -76,7 +76,7 @@ const Register = () => {
       <Fragment>
         <MetaData title={'Register'} />
         <div className="row wrapper mx-4 ">
-          <div className="col-lg-6 offset-lg-3 col-md-6 offset-md-3 my-5  bg-white shadow-lg p-3 mb-5 bg-body rounded">
+          <div className="col-lg-6  my-5  bg-white shadow-lg p-3 mb-5 bg-body rounded">
             <h3 className="text-center">Register</h3>
             <form
               className=" px-3"

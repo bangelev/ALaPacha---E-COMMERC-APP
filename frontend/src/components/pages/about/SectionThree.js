@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 const SectionThree = () => {
   return (
@@ -26,9 +25,9 @@ const SectionThree = () => {
                 And if you over 18 the girls or the boys will get you everything
                 you want to drink. If not, maybe juice......
               </p>
-              <Link to="#contact" className="btn btn-secondary mb-5">
+              <a href="#contact" className="btn btn-secondary mb-5">
                 Make Reservation
-              </Link>
+              </a>
             </div>
           </div>
         </div>

@@ -18,11 +18,13 @@ app.use(fileUpload())
 const products = require('./routes/products')
 const user = require('./routes/user')
 const orders = require('./routes/orders')
+const payment = require('./routes/payment')
 
 //routes use
 app.use('/api/v1', products)
 app.use('/api/v1', user)
 app.use('/api/v1', orders)
+app.use('/api/v1', payment)
 
 // app.get('*', (req, res) => {
 //     res.status(200).json({

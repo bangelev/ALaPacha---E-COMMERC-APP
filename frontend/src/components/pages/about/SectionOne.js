@@ -29,9 +29,9 @@ const SectionOne = () => {
                 <Link to="/products" className="btn btn-secondary px-3 mx-3">
                   See Menu
                 </Link>
-                <Link to="#contact" className="btn btn-outline-secondary">
+                <a href="#contact" className="btn btn-outline-secondary">
                   Contact Us
-                </Link>
+                </a>
               </div>
             </div>
           </div>

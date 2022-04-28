@@ -38,7 +38,7 @@ const Login = () => {
       ) : (
         <Fragment>
           <MetaData title={'Login'} />
-          <div className="row wrapper mx-4 ">
+          <div className="row  mx-4 ">
             <div className="col-lg-4 offset-lg-4 col-md-6 offset-md-3 my-5  bg-white shadow-lg p-3 mb-5 bg-body rounded">
               <h3 className="text-center">Login</h3>
               <form className=" px-3" onSubmit={submitHandler}>

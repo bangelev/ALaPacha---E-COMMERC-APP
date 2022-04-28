@@ -120,7 +120,7 @@ export const updateProfile = (userData) => async(dispatch) => {
             }
 
             const { data } = await axios.put('/api/v1/profile/update', userData, config)
-            console.log('AFTER AXIOS REQ')
+
             dispatch({
                 type: UPDATE_PROFILE_SUCCESS,
                 payload: data,
@@ -173,7 +173,7 @@ export const forgotPassword = (email) => async(dispatch) => {
                 'Content-Type': 'application/json',
             },
         }
-        console.log('ACTION')
+
         const { data } = await axios.post('/api/v1/password/forgot', email, config)
 
         dispatch({
@@ -199,7 +199,7 @@ export const resetPassword = (token, passwords) => async(dispatch) => {
                 'Content-Type': 'application/json',
             },
         }
-        console.log('ACTION')
+
         const { data } = await axios.put(
             `/api/v1/password/reset/${token}`,
             passwords,
@@ -220,7 +220,6 @@ export const resetPassword = (token, passwords) => async(dispatch) => {
 
 // clear error
 export const clearError = () => async(dispatch) => {
-    console.log('CLEARING ERROR')
     dispatch({
         type: CLEAR_ERROR,
     })

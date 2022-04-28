@@ -1,5 +1,4 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 export const useCalculatePrices = () => {
     const { cartItems } = useSelector((state) => state.cart)

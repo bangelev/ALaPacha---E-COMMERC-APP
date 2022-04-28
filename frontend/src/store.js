@@ -15,6 +15,8 @@ import {
 } from './redux/reducers/userReducer'
 //cart reducers
 import { cartReducer } from './redux/reducers/cartReducer'
+// oreder reducers
+import { newOrderReducer } from './redux/reducers/orderReducers'
 
 const rootReducer = combineReducers({
     products: productsReducer,
@@ -23,12 +25,16 @@ const rootReducer = combineReducers({
     user: userReducer,
     forgotPassword: forgotPasswordReducer,
     cart: cartReducer,
+    order: newOrderReducer,
 })
 let initialState = {
     cart: {
         cartItems: localStorage.getItem('cartItems') ?
             JSON.parse(localStorage.getItem('cartItems')) :
             [],
+        shippingInfo: localStorage.getItem('shippingInfo') ?
+            JSON.parse(localStorage.getItem('shippingInfo')) :
+            {},
     },
 }
 
