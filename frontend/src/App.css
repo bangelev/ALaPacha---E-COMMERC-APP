@@ -252,3 +252,11 @@ body {
     font-size: 0.9rem;
     color: grey;
 }
+
+.review-card {
+    font-size: 0.7rem;
+}
+
+.review_user {
+    font-size: 0.5rem;
+}

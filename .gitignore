@@ -6,7 +6,7 @@
 /backend/config/.env
 /markup/
 /.vscode/
-todos.md/
+/todos.md
 
 
 npm-debug.log*

@@ -44,7 +44,6 @@ exports.getSingleOrder = catchAsync(async(req, res, next) => {
 
 //get all user orders => api/v1/orders/me
 exports.myOrders = catchAsync(async(req, res, next) => {
-    console.log(req.user.id)
     const orders = await Order.find({ user: req.user.id })
 
     res.status(200).json({

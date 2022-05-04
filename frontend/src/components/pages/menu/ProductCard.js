@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+// import { NEW_REVIEW_RESET } from '../../../redux/constants/productConstants'
+
+// import { useSuccess } from '../../../customHooks/alerts'
 import '../../../App.css'
-// import { Link } from 'react-router-dom'
 import { Modal, Button } from 'react-bootstrap'
+import NewReview from './NewReview'
 import StarRating from '../../layout/StarRating'
+import Reviews from './Reviews'
 
 import { addToCart } from '../../../redux/actions/cartActions'
-// import {useSuccess, useError} from '../../customHooks/alerts'
 
 const ProductCard = ({ product }) => {
-  // const alertSuccess = useSuccess()
+  const { success } = useSelector((state) => state.newReview)
 
   const [quantity, setQuantity] = useState(1)
 
@@ -17,7 +20,7 @@ const ProductCard = ({ product }) => {
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
-  // const handleShow = () => setShow(true)
+
   const addItemHandler = (id) => {
     dispatch(addToCart(id, quantity))
     setShow(false)
@@ -29,6 +32,12 @@ const ProductCard = ({ product }) => {
     if (quantity === 1) return
     setQuantity((prev) => prev - 1)
   }
+  useEffect(() => {
+    if (success) {
+      setShow(false)
+    }
+    //eslint-disable-next-line
+  }, [product.reviews, success])
   return (
     <>
       <div className="col-12 col-lg-6 m-0 " id="cardPoint">
@@ -60,19 +69,13 @@ const ProductCard = ({ product }) => {
                 >
                   {product.description}
                 </p>
-                <StarRating product={product} />
+                <StarRating ratings={product.ratings} />
               </div>
             </div>
           </div>
         </div>
         <>
-          <Modal
-            show={show}
-            onHide={handleClose}
-            // backdrop="static"
-            keyboard={false}
-            centered
-          >
+          <Modal show={show} onHide={handleClose} keyboard={false} centered>
             <Modal.Header closeButton>
               <Modal.Title className="muted">{product.name}</Modal.Title>
             </Modal.Header>
@@ -99,7 +102,11 @@ const ProductCard = ({ product }) => {
                     </div>
                     <ul className="list-group list-group-flush">
                       <li className="list-group-item">
-                        <StarRating product={product} />
+                        <StarRating ratings={product.ratings} />
+
+                        <span id="no_of_reviews">
+                          ({product.numOfReviews} Reviews)
+                        </span>
                       </li>
                     </ul>
 
@@ -140,14 +147,15 @@ const ProductCard = ({ product }) => {
                     </div>
                   </div>
                   <h5 className="text-center mt-3">Other's Reviews</h5>
+                  {product.reviews.map((review) => (
+                    <Reviews key={review._id} review={review} />
+                  ))}
+
+                  <NewReview productId={product._id} />
                 </div>
               </>
             </Modal.Body>
-            <Modal.Footer>
-              {/* <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button> */}
-            </Modal.Footer>
+            <Modal.Footer></Modal.Footer>
           </Modal>
         </>
       </div>

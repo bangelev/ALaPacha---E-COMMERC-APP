@@ -55,7 +55,7 @@ const Profile = () => {
                 {String(user.createdAt).substring(0, 10)}
               </p>
               <div className="d-grid gap-2">
-                <Link to="" className="btn btn-block btn-danger">
+                <Link to="/orders/me" className="btn btn-block btn-danger">
                   My orders
                 </Link>
                 <Link

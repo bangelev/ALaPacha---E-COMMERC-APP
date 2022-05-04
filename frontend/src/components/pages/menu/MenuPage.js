@@ -46,7 +46,7 @@ const MenuPage = () => {
     dispatch(getAllProducts())
     if (error) {
       alertError(error)
-      dispatch(clearError())
+      // dispatch(clearError())
     }
 
     //eslint-disable-next-line

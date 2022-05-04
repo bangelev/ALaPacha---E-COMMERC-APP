@@ -144,6 +144,8 @@ exports.createReview = catchAsync(async(req, res, next) => {
 
 // get review
 exports.getReview = catchAsync(async(req, res, next) => {
+    console.log('GET ALL REVIEWS ROUTE')
+    console.log(req.query.productId)
     const product = await Product.findById(req.query.productId)
 
     res.status(200).json({

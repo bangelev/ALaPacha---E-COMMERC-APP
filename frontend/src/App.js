@@ -34,6 +34,10 @@ import ConfirmOrder from './components/pages/cart/ConfirmOrder'
 import Payment from './components/pages/cart/Payment'
 import OrderSuccess from './components/layout/OrderSuccess'
 
+//order imports
+import MyOrderTable from './components/pages/order/MyOrderTable'
+import OrdersList from './components/pages/order/OrdersList'
+
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState('')
   useEffect(() => {
@@ -53,7 +57,7 @@ function App() {
         <ToastContainer />
         <Routes>
           <Route path="/" element={<AboutPage />} />
-          <Route path="products" element={<MenuPage />} />
+          <Route path="/products" element={<MenuPage />} />
 
           {/* USER Routes */}
           <Route path="/login" element={<Login />} />
@@ -119,6 +123,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <OrderSuccess />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders/me"
+            element={
+              <ProtectedRoute>
+                <MyOrderTable />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders/:id"
+            element={
+              <ProtectedRoute>
+                <OrdersList />
               </ProtectedRoute>
             }
           />
