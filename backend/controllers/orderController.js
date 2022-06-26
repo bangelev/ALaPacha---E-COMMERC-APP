@@ -62,7 +62,6 @@ exports.getAllOrders = catchAsync(async(req, res, next) => {
         totalAmount += order.totalPrice
     })
 
-    console.log(totalAmount)
     res.status(200).json({
         success: true,
         message: 'Orders retrieved successfully',

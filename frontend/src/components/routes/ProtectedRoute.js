@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import { loadCurrentUser } from '../../redux/actions/userActions'
 import Loader from '../layout/Loader'
+import { useError } from '../../customHooks/alerts'
 
 const ProtectedRoute = ({ children }) => {
+  const alertError = useError()
+  const location = useLocation().pathname
   const dispatch = useDispatch()
   const {
     loading = true,
@@ -22,9 +25,19 @@ const ProtectedRoute = ({ children }) => {
     return <Loader />
   } else {
     if (!loading && isAuthenticated) {
+      // admin routes
+      if (location.includes('/admin')) {
+        if (user.role === 'admin') {
+          return children
+        } else {
+          alertError('NOT AUTHORIZED')
+          return <Navigate to="/" />
+        }
+      }
       return children
     } else {
-      return <Navigate to="/" />
+      alertError('LOGIN FIRST')
+      return <Navigate to="/login" />
     }
   }
 }

@@ -81,19 +81,21 @@ const MyOrderTable = () => {
   return (
     <Fragment>
       <MetaData title={'My orders'} />
-      <h1 className="my-5">My orders</h1>
-      {loading ? (
-        <Loader />
-      ) : (
-        <MDBDataTable
-          data={setOrders()}
-          className="mx-3"
-          bordered
-          striped
-          hover
-          responsiveSm
-        />
-      )}
+      <div className="container" id="sectionOne">
+        <h1 className="my-5">My orders</h1>
+        {loading ? (
+          <Loader />
+        ) : (
+          <MDBDataTable
+            data={setOrders()}
+            className="mx-3"
+            bordered
+            striped
+            hover
+            responsiveSm
+          />
+        )}
+      </div>
     </Fragment>
   )
 }

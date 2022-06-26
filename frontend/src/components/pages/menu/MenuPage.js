@@ -38,7 +38,6 @@ const MenuPage = () => {
 
   const dispatch = useDispatch()
   const { loading, products, error } = useSelector((state) => state.products)
-  // const { cartItems } = useSelector((state) => state.cart)
 
   const alertError = useError()
 
@@ -46,7 +45,7 @@ const MenuPage = () => {
     dispatch(getAllProducts())
     if (error) {
       alertError(error)
-      // dispatch(clearError())
+      dispatch(clearError())
     }
 
     //eslint-disable-next-line
@@ -56,7 +55,7 @@ const MenuPage = () => {
     <>
       <MetaData title="Menu" />
 
-      <div className="card mb-5 ">
+      <div className="card mb-5  " id="sectionOne">
         <img
           src="\images\sebastian-schuppik-H7xTpvBjJS4-unsplash.jpg"
           className="card-img-top"
@@ -65,7 +64,7 @@ const MenuPage = () => {
         />
         <div className="card-body text-center bg-dark text-light">
           <h2 className="card-title fw-4 fst-italic text-warning">
-            La LaLaPacha MENU
+            A LaLaPacha MENU
           </h2>
         </div>
       </div>

@@ -109,24 +109,25 @@ const UpdateProfile = () => {
                   onChange={onChangeHandler}
                 />
               </div>
-
-              <div className="input-group input-group-sm mb-3">
+              {/* <div className="row "> */}
+              <div className="">
                 <label htmlFor="avatar_upload" className="form-label">
                   Avatar
                 </label>
                 <div className="d-flex align-items-center">
-                  <div>
-                    <figure className="avatar mr-3 item-rtl">
-                      <img
-                        src={avatarPreview}
-                        className="rounded-circle img-thumbnail "
-                        alt="Avatar Preview"
-                        width="55"
-                        height="52"
-                      />
-                    </figure>
-                  </div>
-                  <div className="input-group flex-nowrap ps-3 input-group-sm">
+                  <figure className="avatar mr-3 item-rtl">
+                    <img
+                      src={avatarPreview}
+                      id="avatar_upload"
+                      className="rounded-circle img-thumbnail "
+                      alt="Avatar Preview"
+                      width="55"
+                      height="52"
+                    />
+                  </figure>
+                  {/* </div> */}
+                  {/* <div> */}
+                  <div className="input-group flex-nowrap ps-3 input-group-sm ">
                     <input
                       type="file"
                       name="avatar"
@@ -136,12 +137,14 @@ const UpdateProfile = () => {
                       onChange={onChangeHandler}
                     />
 
-                    {/* <label className="input-group-text" htmlFor="customFile">
+                    <label className="input-group-text" htmlFor="customFile">
                       Choose Avatar
-                    </label> */}
+                    </label>
                   </div>
+                  {/* </div> */}
                 </div>
               </div>
+              {/* </div> */}
               <div className="d-grid">
                 <button
                   className="btn btn-warning "

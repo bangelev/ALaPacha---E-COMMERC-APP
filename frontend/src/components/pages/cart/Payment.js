@@ -40,7 +40,7 @@ const Payment = () => {
 
   // const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'))
   // const { cartItems, shippingInfo } = useSelector((state) => state.cart)
-  const { error, success } = useSelector((state) => state.order)
+  const { error, success } = useSelector((state) => state.newOrder)
 
   const { user } = useSelector((state) => state.auth)
 
@@ -112,65 +112,67 @@ const Payment = () => {
       ) : (
         <Fragment>
           <MetaData title={'Confirm order'} />
-          <div className="row wrapper">
-            <div className="col-10 col-lg-5">
-              <div
-                className="alert alert-danger alert-dismissible fade show"
-                role="alert"
-              >
-                <strong>
-                  Test Card Number 4242424242424242 or 4000056655665556
-                </strong>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="alert"
-                  aria-label="Close"
-                ></button>
-              </div>
-
-              <form className="shadow-lg" onSubmit={submitHandler}>
-                <h1 className="mb-4">Card Info</h1>
-                <div className="form-group">
-                  <label htmlFor="card_num_field">Card Number</label>
-                  <CardNumberElement
-                    type="text"
-                    id="card_num_field"
-                    className="form-control"
-                    options={options}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="card_exp_field">Card Expiry</label>
-                  <CardExpiryElement
-                    type="text"
-                    id="card_exp_field"
-                    className="form-control"
-                    options={options}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="card_cvc_field">Card CVC</label>
-                  <CardCvcElement
-                    type="text"
-                    id="card_cvc_field"
-                    className="form-control"
-                    options={options}
-                  />
-                </div>
-                <div className="d-grid gap-2 col-lg-10 offset-lg-1 mb-4">
+          <div className="container" id="sectionOne">
+            <div className="row wrapper">
+              <div className="col-10 col-lg-5">
+                <div
+                  className="alert alert-danger alert-dismissible fade show"
+                  role="alert"
+                >
+                  <strong>
+                    Test Card Number 4242424242424242 or 4000056655665556
+                  </strong>
                   <button
-                    id="pay_btn"
-                    type="submit"
-                    className="btn btn-block py-3"
-                  >
-                    Pay
-                    {` - ${totalPrice && Number(totalPrice).toFixed(2)}  $`}
-                  </button>
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                  ></button>
                 </div>
-              </form>
+
+                <form className="shadow-lg" onSubmit={submitHandler}>
+                  <h1 className="mb-4">Card Info</h1>
+                  <div className="form-group">
+                    <label htmlFor="card_num_field">Card Number</label>
+                    <CardNumberElement
+                      type="text"
+                      id="card_num_field"
+                      className="form-control my-1"
+                      options={options}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="card_exp_field">Card Expiry</label>
+                    <CardExpiryElement
+                      type="text"
+                      id="card_exp_field"
+                      className="form-control my-1"
+                      options={options}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="card_cvc_field">Card CVC</label>
+                    <CardCvcElement
+                      type="text"
+                      id="card_cvc_field"
+                      className="form-control my-1"
+                      options={options}
+                    />
+                  </div>
+                  <div className="d-grid gap-2 ">
+                    <button
+                      id="pay_btn"
+                      type="submit"
+                      className="btn btn-block py-1"
+                    >
+                      Pay
+                      {` - ${totalPrice && Number(totalPrice).toFixed(2)}  $`}
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </Fragment>

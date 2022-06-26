@@ -44,7 +44,7 @@ const NewPassword = () => {
     <Fragment>
       <MetaData title={'New Password'} />
       <div className="row wrapper mx-4 ">
-        <div className="col-lg-4 offset-lg-4 col-md-6 offset-md-3 my-5  bg-white shadow-lg p-3 mb-5 bg-body rounded">
+        <div className="col-lg-4 col-md-6  my-5  bg-white shadow-lg p-3 mb-5 bg-body rounded">
           <h3 className="text-center">New Password</h3>
           <form className=" px-3" onSubmit={submitHandler}>
             <div className="mb-3">

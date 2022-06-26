@@ -2,6 +2,8 @@ const Product = require('../models/product')
 const catchAsync = require('../middlewares/catchAsync')
 const ErrorHandler = require('../utils/ErrorHandler.js')
 
+const cloudinary = require('cloudinary').v2
+
 // GET ALL PRODUCTS
 exports.getAllProducts = catchAsync(async(req, res, next) => {
     const products = await Product.find()
@@ -29,14 +31,29 @@ exports.getSingleProduct = catchAsync(async(req, res, next) => {
     })
 })
 
-// CREATE PRODUCT => api/v1/products
+// CREATE PRODUCT => api/v1/admin/products
 exports.newProduct = catchAsync(async(req, res, next) => {
-        const dataProduct = req.body
-        dataProduct.user = req.user
-        console.log(dataProduct.user)
-        const newProduct = await Product.create(dataProduct)
+        // In case is one img it will be string not Array
+        let images = []
+        if (typeof req.body.images === 'string') {
+            images.push(req.body.images)
+        } else {
+            images = req.body.images
+        }
+        let imagesLinks = []
+        for (let i = 0; i < images.length; i++) {
+            const result = await cloudinary.uploader.upload(images[i], {
+                folder: 'products',
+            })
+            imagesLinks.push({
+                public_id: result.public_id,
+                url: result.secure_url,
+            })
+        }
+        req.body.images = imagesLinks
+        req.body.user = req.user._id
+        const newProduct = await Product.create(req.body)
 
-        // TODO: Cloudinary image process
         res.status(200).json({
             success: true,
             message: 'Product created successfully',
@@ -45,15 +62,44 @@ exports.newProduct = catchAsync(async(req, res, next) => {
     })
     // UPDATE PRODUCT api/v1/admin/products/:id
 exports.updateProduct = catchAsync(async(req, res, next) => {
-    let productId = req.params.id
-        // cloudinary setup
-    const product = await Product.findByIdAndUpdate(productId, req.body, {
+    let product = await Product.findById(req.params.id)
+
+    if (!product) {
+        return next(new ErrorHandler('Product not found', 404))
+    }
+
+    // In case is one img it will be string not Array
+    let images = []
+    if (images) {}
+    if (typeof req.body.images === 'string') {
+        images.push(req.body.images)
+    } else {
+        images = req.body.images
+    }
+    if (images !== undefined) {
+        //Deleting images associated with product
+        for (let i = 0; i < product.images.length; i++) {
+            const result = await cloudinary.uploader.destroy(
+                product.images[i].public_id
+            )
+        }
+
+        let imagesLinks = []
+        for (let i = 0; i < images.length; i++) {
+            const result = await cloudinary.uploader.upload(images[i], {
+                folder: 'products',
+            })
+            imagesLinks.push({
+                public_id: result.public_id,
+                url: result.secure_url,
+            })
+        }
+        req.body.images = imagesLinks
+    }
+    product = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true,
     })
-    if (!product) {
-        return next(new ErrorHandler('Product NOT found', 404))
-    }
 
     res.status(200).json({
         success: true,
@@ -65,11 +111,15 @@ exports.updateProduct = catchAsync(async(req, res, next) => {
 //DELETE PRODUCT =>api/v1/admin/products/:id
 exports.deleteProduct = catchAsync(async(req, res, next) => {
     const product = await Product.findById(req.params.id)
-        //TODO: Cloudinary image delete images
+
     if (!product) {
         return next(new ErrorHandler('Product NOT found', 404))
     }
-
+    for (let i = 0; i < product.images.length; i++) {
+        const result = await cloudinary.uploader.destroy(
+            product.images[i].public_id
+        )
+    }
     await product.deleteOne()
     res.status(200).json({
         success: true,
@@ -121,7 +171,6 @@ exports.createReview = catchAsync(async(req, res, next) => {
     if (isReviewed) {
         product.reviews.forEach((review) => {
             if (review.user.toString() === req.user._id.toString()) {
-                console.log('IT has comment')
                 review.comment = comment
                 review.rating = rating
             }
@@ -144,8 +193,6 @@ exports.createReview = catchAsync(async(req, res, next) => {
 
 // get review
 exports.getReview = catchAsync(async(req, res, next) => {
-    console.log('GET ALL REVIEWS ROUTE')
-    console.log(req.query.productId)
     const product = await Product.findById(req.query.productId)
 
     res.status(200).json({

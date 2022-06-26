@@ -170,8 +170,6 @@ exports.updatePassword = catchAsync(async(req, res, next) => {
 
 //update user profile =>api/v1/profile/update
 exports.updateProfile = catchAsync(async(req, res, next) => {
-    console.log('Update Route')
-
     const newUserData = {
         name: req.body.name,
         email: req.body.email,
@@ -235,16 +233,12 @@ exports.getUserDetails = catchAsync(async(req, res, next) => {
 
 //admin update user => api/v1/admin/users/:id
 exports.updatedUser = catchAsync(async(req, res, next) => {
-    const userNewData = {
-            name: req.body.name,
-            email: req.body.email,
-            role: req.body.role,
+    const user = await User.findByIdAndUpdate(
+        req.params.id, { role: req.body.role }, {
+            new: true,
+            runValidators: true,
         }
-        //TODO: Cloudinary image
-    const user = await User.findByIdAndUpdate(req.params.id, userNewData, {
-        new: true,
-        runValidators: true,
-    })
+    )
 
     res.status(200).json({
         success: true,

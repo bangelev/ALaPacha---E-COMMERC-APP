@@ -40,7 +40,7 @@ const ContactInfo = () => {
                 </li>
                 <li className="list-group-item">
                   <span className="fw-bold">Email:</span>
-                  contact@lalapacha.com.mk
+                  contact@alapacha.com.mk
                 </li>
               </ul>
             </div>

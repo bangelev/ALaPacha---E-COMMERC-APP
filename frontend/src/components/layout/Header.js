@@ -6,6 +6,7 @@ import { logoutUser } from '../../redux/actions/userActions'
 const Header = () => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
+  const { cartItems } = useSelector((state) => state.cart)
   const logoutHandler = () => {
     dispatch(logoutUser())
   }
@@ -15,7 +16,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top px-5">
         <div className="container-fluid">
           <Link className="navbar-brand img-fluid text-warning" to="/">
-            <img src="/images/logo_icon.png" alt="" /> &nbsp;La LaPacha
+            <img src="/images/logo_icon.png" alt="" /> &nbsp;A LaPacha
           </Link>
           <div>
             <button
@@ -31,6 +32,8 @@ const Header = () => {
             </button>
             <div
               className="collapse navbar-collapse"
+              data-toggle="collapse"
+              // data-target=".navbar-collapse"
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -45,8 +48,11 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/cart">
+                  <Link className="nav-link btn" to="/cart">
                     Cart
+                    <span className="badge bg-warning ms-2">
+                      {cartItems.length}
+                    </span>
                   </Link>
                 </li>
                 {!user ? (
@@ -58,12 +64,13 @@ const Header = () => {
                 ) : (
                   <li className="nav-item dropdown">
                     <Link
-                      className="nav-link dropdown-toggle"
+                      className="nav-link dropdown-toggle me-4"
                       to=""
                       id="navbarDropdown"
                       role="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
+                      data-bs-auto-close="true"
                     >
                       <figure className="avatar avatar-nav">
                         <img
@@ -80,23 +87,27 @@ const Header = () => {
                       className="dropdown-menu"
                       aria-labelledby="navbarDropdown"
                     >
-                      <li>
-                        <Link className="dropdown-item" to="/">
-                          Dashboard
-                        </Link>
-                      </li>
+                      {user && user.role === 'admin' ? (
+                        <li>
+                          <Link className="dropdown-item" to="/admin/dashboard">
+                            Dashboard
+                          </Link>
+                        </li>
+                      ) : null}
+
                       <li>
                         <Link className="dropdown-item" to="/orders/me">
                           My orders
                         </Link>
                       </li>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
+
                       <li>
                         <Link className="dropdown-item" to="/profile">
                           Profile
                         </Link>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
                       </li>
                       <li>
                         <Link

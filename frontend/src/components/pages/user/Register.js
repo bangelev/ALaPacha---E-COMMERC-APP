@@ -23,7 +23,7 @@ const Register = () => {
   const { name, email, password } = user
   const [avatar, setAvatar] = useState('')
   const [avatarPreview, setAvatarPreview] = useState(
-    '/images/default_avatar.png'
+    '/images/default_avatar.jpg'
   )
   useEffect(() => {
     if (isAuthenticated) {
@@ -72,109 +72,104 @@ const Register = () => {
   }
 
   return (
-    <>
-      <Fragment>
-        <MetaData title={'Register'} />
-        <div className="row wrapper mx-4 ">
-          <div className="col-lg-6  my-5  bg-white shadow-lg p-3 mb-5 bg-body rounded">
-            <h3 className="text-center">Register</h3>
-            <form
-              className=" px-3"
-              onSubmit={submitHandler}
-              encType="multipart/form-data"
-            >
-              <div className="mb-3 form-group">
-                <label htmlFor="name" className="form-label">
-                  Name
-                </label>
-                <input
-                  required
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  placeholder="your name"
-                  name="name"
-                  value={name}
-                  onChange={onChangeHandler}
-                />
-              </div>
-              <div className="mb-3 form-group">
-                <label htmlFor="email" className="form-label">
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  required
-                  className="form-control"
-                  id="email"
-                  placeholder="name@example.com"
-                  name="email"
-                  value={email}
-                  onChange={onChangeHandler}
-                />
-              </div>
-              <div className="mb-3 form-group">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  required
-                  className="form-control"
-                  id="password"
-                  name="password"
-                  value={password}
-                  onChange={onChangeHandler}
-                />
-              </div>
-
-              <div className="form-group form-group-sm mb-3 ">
-                <label htmlFor="avatar_upload" className="form-label">
-                  Avatar
-                </label>
-                <div className="d-flex align-items-center">
-                  <div>
-                    <figure className="avatar mr-3 item-rtl">
-                      <img
-                        src={avatarPreview}
-                        className="rounded-circle img-thumbnail "
-                        alt="Avatar Preview"
-                        width="55"
-                        height="52"
-                      />
-                    </figure>
-                  </div>
-
-                  <div className="input-group flex-nowrap ps-3 input-group-sm">
-                    <input
-                      type="file"
-                      name="avatar"
-                      className="form-control"
-                      id="customFile"
-                      accept="images/*"
-                      onChange={onChangeHandler}
+    <Fragment>
+      <MetaData title={'Register'} />
+      <div className="row wrapper mx-4 ">
+        <div className="col-lg-6  my-5  bg-white shadow-lg p-3 mb-5 bg-body rounded">
+          <h3 className="text-center"> Register </h3>
+          <form
+            className=" px-3"
+            onSubmit={submitHandler}
+            encType="multipart/form-data"
+          >
+            <div className="mb-3 form-group">
+              <label htmlFor="name" className="form-label">
+                Name
+              </label>
+              <input
+                required
+                type="text"
+                className="form-control"
+                id="name"
+                placeholder="your name"
+                name="name"
+                value={name}
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="mb-3 form-group">
+              <label htmlFor="email" className="form-label">
+                Email address
+              </label>
+              <input
+                type="email"
+                required
+                className="form-control"
+                id="email"
+                placeholder="name@example.com"
+                name="email"
+                value={email}
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="mb-3 form-group">
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
+              <input
+                type="password"
+                required
+                className="form-control"
+                id="password"
+                name="password"
+                value={password}
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="form-group form-group-sm mb-3 ">
+              <label htmlFor="avatar_upload" className="form-label">
+                Avatar
+              </label>
+              <div className="d-flex align-items-center">
+                <div>
+                  <figure className="avatar mr-3 item-rtl">
+                    <img
+                      src={avatarPreview}
+                      className="rounded-circle img-thumbnail "
+                      alt="Avatar Preview"
+                      width="55"
+                      height="52"
                     />
-
-                    {/* <label className="input-group-text" htmlFor="customFile">
-                      Choose Avatar
-                    </label> */}
-                  </div>
+                  </figure>
+                </div>
+                <div className="input-group flex-nowrap ps-3 input-group-sm">
+                  <input
+                    type="file"
+                    name="avatar"
+                    className="form-control"
+                    id="customFile"
+                    accept="images/*"
+                    onChange={onChangeHandler}
+                  />
+                  {/* <label className="input-group-text" htmlFor="customFile">
+                                  Choose Avatar
+                                </label> */}
                 </div>
               </div>
-              <div className="d-grid">
-                <button
-                  className="btn btn-warning "
-                  type="submit"
-                  disabled={loading ? true : false}
-                >
-                  Register
-                </button>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div className="d-grid">
+              <button
+                className="btn btn-warning "
+                type="submit"
+                disabled={loading ? true : false}
+              >
+                Register
+              </button>
+            </div>
+          </form>
         </div>
-      </Fragment>
-    </>
+      </div>
+    </Fragment>
   )
 }
 

@@ -38,7 +38,7 @@ const UpdatePassword = () => {
   return (
     <Fragment>
       <MetaData title={'Reset Password'} />
-      <div className="row wrapper mx-4 ">
+      <div className="row wrapper mx-4 " id="sectionTwo">
         <div className="col-lg-4   bg-white shadow-lg p-3 mb-5 bg-body rounded">
           <h3 className="text-center">Reset Password</h3>
           <form className=" px-3" onSubmit={submitHandler}>

@@ -11,10 +11,12 @@ const AboutPage = () => {
   return (
     <>
       <MetaData title="About" />
-      <SectionOne />
-      <SectionTwo />
-      <SectionThree />
-      <ContactInfo />
+      <div className="container" id="sectionOne">
+        <SectionOne />
+        <SectionTwo />
+        <SectionThree />
+        <ContactInfo />
+      </div>
     </>
   )
 }

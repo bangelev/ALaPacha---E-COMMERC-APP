@@ -24,6 +24,18 @@ import {
     NEW_PASSWORD_REQUEST,
     NEW_PASSWORD_SUCCESS,
     NEW_PASSWORD_FAIL,
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    ALL_USERS_FAIL,
+    USER_DETAILS_REQUEST,
+    USER_DETAILS_SUCCESS,
+    USER_DETAILS_FAILURE,
+    DELETE_USER_REQUEST,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_FAILURE,
+    UPDATE_USER_REQUEST,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_FAILURE,
     CLEAR_ERROR,
 } from '../constants/userConstants'
 
@@ -213,6 +225,93 @@ export const resetPassword = (token, passwords) => async(dispatch) => {
     } catch (error) {
         dispatch({
             type: NEW_PASSWORD_FAIL,
+            payload: error.response.data.message,
+        })
+    }
+}
+
+export const allUsers = () => async(dispatch) => {
+    try {
+        dispatch({
+            type: ALL_USERS_REQUEST,
+        })
+
+        const { data } = await axios.get('/api/v1/admin/users')
+
+        dispatch({
+            type: ALL_USERS_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: ALL_USERS_FAIL,
+            payload: error.response.data.message,
+        })
+    }
+}
+
+export const getUserDetails = (id) => async(dispatch) => {
+    try {
+        dispatch({
+            type: USER_DETAILS_REQUEST,
+        })
+
+        const { data } = await axios.get(`/api/v1/admin/users/${id}`)
+
+        dispatch({
+            type: USER_DETAILS_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: USER_DETAILS_FAILURE,
+            payload: error.response.data.message,
+        })
+    }
+}
+
+export const deleteUser = (id) => async(dispatch) => {
+    try {
+        dispatch({
+            type: DELETE_USER_REQUEST,
+        })
+
+        const { data } = await axios.delete(`/api/v1/admin/users/${id}`)
+
+        dispatch({
+            type: DELETE_USER_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: DELETE_USER_FAILURE,
+            payload: error.response.data.message,
+        })
+    }
+}
+
+export const updateUser = (id, formData) => async(dispatch) => {
+    try {
+        dispatch({
+            type: UPDATE_USER_REQUEST,
+        })
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+        const { data } = await axios.put(
+            `/api/v1/admin/users/${id}`,
+            formData,
+            config
+        )
+        dispatch({
+            type: UPDATE_USER_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: UPDATE_USER_FAILURE,
             payload: error.response.data.message,
         })
     }

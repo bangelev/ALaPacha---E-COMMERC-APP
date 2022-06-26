@@ -30,7 +30,7 @@ const OrdersList = () => {
   return (
     <Fragment>
       <MetaData title={'Order Details'} />
-      <div className="container  " id="sectionOne">
+      <div className="container mt-5 pt-5 ">
         <div
           className="col-lg-6 offset-lg-3 mb-3"
           style={{ maxWidth: '540px' }}
@@ -46,16 +46,17 @@ const OrdersList = () => {
               </span>
             </li>
           </ul>
+
+          {loading ? (
+            <Loader />
+          ) : (
+            orderItems &&
+            orderItems.map((product) => (
+              <OrderCardDetails key={product._id} product={product} />
+              // <p>1</p>
+            ))
+          )}
         </div>
-        {loading ? (
-          <Loader />
-        ) : (
-          orderItems &&
-          orderItems.map((product) => (
-            <OrderCardDetails key={product._id} product={product} />
-            // <p>1</p>
-          ))
-        )}
       </div>
     </Fragment>
   )

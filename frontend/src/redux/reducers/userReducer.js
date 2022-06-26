@@ -20,10 +20,25 @@ import {
     UPDATE_PASSWORD_FAIL,
     FORGOT_PASSWORD_REQUEST,
     FORGOT_PASSWORD_SUCCESS,
+    FORGOT_PASSWORD_RESET,
     FORGOT_PASSWORD_FAIL,
     NEW_PASSWORD_REQUEST,
     NEW_PASSWORD_SUCCESS,
     NEW_PASSWORD_FAIL,
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    ALL_USERS_FAIL,
+    USER_DETAILS_REQUEST,
+    USER_DETAILS_SUCCESS,
+    USER_DETAILS_FAILURE,
+    DELETE_USER_REQUEST,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_RESET,
+    DELETE_USER_FAILURE,
+    UPDATE_USER_REQUEST,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_RESET,
+    UPDATE_USER_FAILURE,
     CLEAR_ERROR,
 } from '../constants/userConstants'
 
@@ -82,26 +97,43 @@ export const userReducer = (state = {}, action) => {
     switch (action.type) {
         case UPDATE_PROFILE_REQUEST:
         case UPDATE_PASSWORD_REQUEST:
+        case DELETE_USER_REQUEST:
+        case UPDATE_USER_REQUEST:
             return {
                 ...state,
                 loading: true,
             }
         case UPDATE_PROFILE_SUCCESS:
         case UPDATE_PASSWORD_SUCCESS:
+        case UPDATE_USER_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 isUpdated: action.payload.success,
                 message: action.payload.message,
             }
+        case DELETE_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isDeleted: action.payload.success,
+            }
         case UPDATE_PROFILE_RESET:
         case UPDATE_PASSWORD_RESET:
+        case UPDATE_USER_RESET:
             return {
                 ...state,
                 isUpdated: false,
             }
+        case DELETE_USER_RESET:
+            return {
+                ...state,
+                isDeleted: false,
+            }
         case UPDATE_PROFILE_FAIL:
         case UPDATE_PASSWORD_FAIL:
+        case DELETE_USER_FAILURE:
+        case UPDATE_USER_FAILURE:
             return {
                 ...state,
                 loading: false,
@@ -130,7 +162,14 @@ export const forgotPasswordReducer = (state = {}, action) => {
             return {
                 ...state,
                 loading: false,
+                success: action.payload.success,
                 message: action.payload.message,
+            }
+        case FORGOT_PASSWORD_RESET:
+            return {
+                ...state,
+                loading: false,
+                success: false,
             }
         case NEW_PASSWORD_SUCCESS:
             return {
@@ -143,6 +182,60 @@ export const forgotPasswordReducer = (state = {}, action) => {
             return {
                 ...state,
                 loading: false,
+                error: action.payload,
+            }
+        case CLEAR_ERROR:
+            return {
+                ...state,
+                error: null,
+            }
+        default:
+            return state
+    }
+}
+
+export const allUsersReducer = (state = { users: [] }, action) => {
+    switch (action.type) {
+        case ALL_USERS_REQUEST:
+            return {
+                loading: true,
+                users: [],
+            }
+        case ALL_USERS_SUCCESS:
+            return {
+                loading: false,
+                users: action.payload.users,
+            }
+        case ALL_USERS_FAIL:
+            return {
+                loading: false,
+                users: [],
+                error: action.payload,
+            }
+        case CLEAR_ERROR:
+            return {
+                ...state,
+                error: null,
+            }
+        default:
+            return state
+    }
+}
+
+export const userDetailsReducer = (state = {}, action) => {
+    switch (action.type) {
+        case USER_DETAILS_REQUEST:
+            return {
+                loading: true,
+            }
+        case USER_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                user: action.payload.user,
+            }
+        case USER_DETAILS_FAILURE:
+            return {
+                ...state,
                 error: action.payload,
             }
         case CLEAR_ERROR:

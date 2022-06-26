@@ -1,3 +1,13 @@
+html,
+body {
+    font-family: 'Amazon Ember';
+    width: 100%;
+    min-height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
 @media (min-width: 1200px) {
     #pizza,
     section p {
@@ -6,14 +16,24 @@
     }
 }
 
-body {
+*/ body {
     font-family: 'Shadows Into Light', cursive;
 }
 
 #sectionOne::before {
     display: block;
     content: '';
-    height: 60px;
+    height: 70px;
+}
+
+#sectionTwo::before {
+    display: block;
+    content: '';
+    height: 90px;
+}
+
+.accordion-button {
+    font-size: 1.4rem;
 }
 
 .map-container {
@@ -23,6 +43,16 @@ body {
     border-radius: 10px;
     border: 5px solid gray;
     overflow: visible;
+}
+
+
+/* Footer */
+
+footer {
+    margin-top: 6rem;
+    color: grey;
+    bottom: 0;
+    width: 100%;
 }
 
 
@@ -259,4 +289,128 @@ body {
 
 .review_user {
     font-size: 0.5rem;
+}
+
+
+/* Admin Sidebar */
+
+.sidebar-wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    /* min-height: 100vh; */
+    font-weight: normal;
+    margin-top: 0;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
+
+#sidebar {
+    min-width: 100%;
+    max-width: 100%;
+    /* background: #232f3e; */
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar::before {
+    display: block;
+    content: '';
+    height: 70px;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #232f3e;
+}
+
+#sidebar ul.components {
+    padding: 5px 0px;
+    border-bottom: 1px solid #232f3e;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    color: #232f3e;
+    background: #fff;
+}
+
+#sidebar ul li a i {
+    margin-right: 0.3rem;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded='true'] {
+    color: #fff;
+    background: #232f3e;
+}
+
+a[data-toggle='collapse'] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 1rem !important;
+    padding-left: 30px !important;
+    background: #232f3e;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+
+/* Products List Admin */
+
+#products_table .btn {
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.4rem;
+}
+
+
+/* Dashboard */
+
+.card-font-size {
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 992px) {
+    #sectionTwo::before {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .sidebar {
+        min-height: 100vh;
+    }
 }
