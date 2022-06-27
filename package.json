@@ -1,5 +1,8 @@
 {
-    "name": "Alapacha",
+     "engines": {
+        "node": "16.14.x"
+    },
+    "name": "alapacha",
     "version": "1.0.0",
     "description": "portfolio E-Commerce app",
     "main": "/backend/server.js",
