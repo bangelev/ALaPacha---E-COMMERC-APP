@@ -1,9 +1,7 @@
 {
-<<<<<<< HEAD
-     "engines": {
-=======
+
     "engines": {
->>>>>>> 870b333 (Fixed .json)
+
         "node": "16.14.x"
     },
     "name": "alapacha",
