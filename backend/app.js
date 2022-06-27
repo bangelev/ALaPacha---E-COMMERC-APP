@@ -4,9 +4,12 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
-require('dotenv').config({
-    path: path.join(__dirname, './config/.env'),
-})
+
+if (process.env.NODE_ENV !== 'PRODUCTION') {
+    require('dotenv').config({
+        path: path.join(__dirname, './config/.env'),
+    })
+}
 const app = express()
     // APP MIDDLEWARES
 app.use(express.json())
@@ -26,11 +29,12 @@ app.use('/api/v1', user)
 app.use('/api/v1', orders)
 app.use('/api/v1', payment)
 
-// app.get('*', (req, res) => {
-//     res.status(200).json({
-//         message: 'It is OK',
-//     })
-// })
+if (process.env.NODE_ENV === 'PRODUCTION') {
+    app.use(express.static(path.join(__dirname, '../frontend/build')))
+    app.get('/*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
+    })
+}
 
 app.use(errorsMiddleware)
 module.exports = app

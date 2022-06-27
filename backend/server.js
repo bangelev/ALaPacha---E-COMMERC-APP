@@ -1,4 +1,5 @@
 const app = require('./app')
+const path = require('path')
 const connectMongoDB = require('./config/database')
 const cloudinary = require('cloudinary').v2
 
@@ -13,6 +14,13 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
 })
+
+if (process.env.NODE_ENV !== 'PRODUCTION') {
+    require('dotenv').config({
+        path: path.join(__dirname, './config/.env'),
+    })
+}
+
 connectMongoDB()
 
 const server = app.listen(process.env.PORT, () => {

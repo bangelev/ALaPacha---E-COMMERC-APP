@@ -87,7 +87,7 @@ exports.forgotPassword = catchAsync(async(req, res, next) => {
     try {
         await sendEmail({
             email: user.email,
-            subject: `LaLaPacha password recovery `,
+            subject: `ALaPacha password recovery `,
             message,
             html: `<h2>Click below to reset password</h2><a href=${resetURL}><button>Reset password</button></a>`,
             // html: `${resetURL}`,
