@@ -2,8 +2,7 @@
 import React, { useEffect, useRef } from 'react'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
-// import mapboxgl from '!mapbox-gl'
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
+import mapboxgl from '!mapbox-gl'
 import '../../../App.css'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
@@ -47,7 +46,7 @@ const ContactInfo = () => {
             </div>
 
             <div className="col-md-6">
-              <div ref={mapContainer} id="map-container" />
+              <div ref={mapContainer} className="map-container" />
             </div>
           </div>
         </div>
