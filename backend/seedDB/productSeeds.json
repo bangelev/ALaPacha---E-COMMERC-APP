@@ -4,6 +4,7 @@
         "price": "10",
         "category": "pizza",
         "numOfReviews": 10,
+        "user": "62b89f6838aec3a75063d0ab",
         "reviews": [],
         "images": [{
             "public_id": "LaLaPacha/kelvin-t-AcA8moIiD3g-unsplash_liqfel",
@@ -14,18 +15,20 @@
         "name": "Pasta Dolce",
         "description": " mushrooms,tomato souse,copar",
         "price": "8",
+        "user": "62b89f6838aec3a75063d0ab",
         "category": "pasta",
         "numOfReviews": 44,
         "reviews": [],
         "images": [{
             "public_id": "LaLaPacha/eaters-collective-12eHC6FxPyg-unsplash_dw6zqv",
-            "url": "https://res.cloudinary.com/da1rwm8l6/image/upload/v1645698852/LaLaPacha/eaters-collective-12eHC6FxPyg-unsplash_dw6zqv.jpg"
+            "url": "https://res.cloudinary.com/da1rwm8l6/image/upload/v1645698772/LaLaPacha/kelly-visel-zXn-amUiMJ4-unsplash_tarvah.jpg"
         }]
     },
     {
         "name": "Eggs Benedict",
         "description": "3 eggs, mushrooms,tomato souse,chajna,white cheese, chips",
         "price": "5",
+        "user": "62b89f6838aec3a75063d0ab",
         "category": "breakfast",
         "numOfReviews": 5,
         "reviews": [],
@@ -38,6 +41,7 @@
         "name": " Beef Soup",
         "description": "beef meet,carrot,tomato souse,grilled bread",
         "price": "4",
+        "user": "62b89f6838aec3a75063d0ab",
         "category": "soup",
         "numOfReviews": 2,
         "reviews": [],
@@ -50,6 +54,7 @@
         "name": " Zlaten Dab",
         "description": "Cold Beer",
         "price": 2,
+        "user": "62b89f6838aec3a75063d0ab",
         "category": "alcoholic drink",
         "numOfReviews": 1,
         "reviews": [],
@@ -62,6 +67,7 @@
         "name": "Honey Pancakes",
         "description": "Pancakes with a variety of fruit and honey",
         "price": 3,
+        "user": "62b89f6838aec3a75063d0ab",
         "category": "dessert",
         "numOfReviews": 6,
         "reviews": [],
@@ -74,6 +80,7 @@
         "name": "Chicken Burger",
         "description": "Burger with cheese and chicken, and fries",
         "price": 3,
+        "user": "62b89f6838aec3a75063d0ab",
         "category": "burger",
         "numOfReviews": 5,
         "reviews": [],
@@ -86,6 +93,7 @@
         "name": "Shardonne",
         "description": "White dry wine",
         "price": 12,
+        "user": "62b89f6838aec3a75063d0ab",
         "category": "alcoholic drink",
         "numOfReviews": 1,
         "reviews": [],
@@ -96,8 +104,9 @@
     },
     {
         "name": "Schweps",
-        "description": "Soda that makes you feel gassy",
+        "description": "Ipsa laudantium molestias eos sapiente officiis modi at sunt excepturi expedita sint?",
         "price": 12,
+        "user": "62b89f6838aec3a75063d0ab",
         "category": "non-alcoholic drink",
         "numOfReviews": 1,
         "reviews": [],
@@ -108,14 +117,41 @@
     },
     {
         "name": "Mixed pork grill",
-        "description": "Soda that makes you feel gassy",
+        "description": "Ipsa laudantium molestias eos sapiente officiis modi at sunt excepturi expedita sint?",
         "price": 12,
+        "user": "62b89f6838aec3a75063d0ab",
         "category": "main course",
         "numOfReviews": 1,
         "reviews": [],
         "images": [{
             "public_id": "LaLaPacha/victoria-shes-UC0HZdUitWY-unsplash_xixfev",
-            "url": "https://res.cloudinary.com/da1rwm8l6/image/upload/v1645698734/LaLaPacha/victoria-shes-UC0HZdUitWY-unsplash_xixfev.jpg"
+            "url": "https://res.cloudinary.com/da1rwm8l6/image/upload/v1645698860/LaLaPacha/jose-ignacio-pompe-s-Z-h0fEiBM-unsplash_ryepef.jpg"
+        }]
+    },
+    {
+        "name": "Beef stew",
+        "description": "Ipsa laudantium molestias eos sapiente officiis modi at sunt excepturi expedita sint?",
+        "price": 12,
+        "user": "62b89f6838aec3a75063d0ab",
+        "category": "main course",
+        "numOfReviews": 1,
+        "reviews": [],
+        "images": [{
+            "public_id": "LaLaPacha/victoria-shes-UC0HZdUitWY-unsplash_xixfev",
+            "url": "https://res.cloudinary.com/da1rwm8l6/image/upload/v1645698802/LaLaPacha/eaters-collective-6rtm6a_aVyE-unsplash_yegwdj.jpg"
+        }]
+    },
+    {
+        "name": "Mozzarela",
+        "description": "Ipsa laudantium molestias eos sapiente officiis modi at sunt excepturi expedita sint?",
+        "price": 12,
+        "user": "62b89f6838aec3a75063d0ab",
+        "category": "pizza",
+        "numOfReviews": 1,
+        "reviews": [],
+        "images": [{
+            "public_id": "LaLaPacha/victoria-shes-UC0HZdUitWY-unsplash_xixfev",
+            "url": "https://res.cloudinary.com/da1rwm8l6/image/upload/v1645698799/LaLaPacha/chad-montano-MqT0asuoIcU-unsplash_gfcoqq.jpg"
         }]
     }
 ]
