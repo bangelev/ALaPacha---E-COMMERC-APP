@@ -10,6 +10,9 @@ if (process.env.NODE_ENV !== 'PRODUCTION') {
         path: path.join(__dirname, './config/.env'),
     })
 }
+// require('dotenv').config({
+//     path: path.join(__dirname, './config/.env'),
+// })
 const app = express()
     // APP MIDDLEWARES
 app.use(express.json())
