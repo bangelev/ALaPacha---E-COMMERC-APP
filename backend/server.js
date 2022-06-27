@@ -15,14 +15,14 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
-// if (process.env.NODE_ENV !== 'PRODUCTION') {
-//     require('dotenv').config({
-//         path: path.join(__dirname, './config/.env'),
-//     })
-// }
-require('dotenv').config({
-    path: path.join(__dirname, './config/.env'),
-})
+if (process.env.NODE_ENV !== 'PRODUCTION') {
+    require('dotenv').config({
+        path: path.join(__dirname, './config/.env'),
+    })
+}
+// require('dotenv').config({
+//     path: path.join(__dirname, './config/.env'),
+// })
 
 connectMongoDB()
 
