@@ -5,7 +5,7 @@
 ## MERN  Full Stack Ecommerce Site - Using React, Redux, Node.js, Express.js, MongoDB
 
 ### Env Variables
-Add your config variables values in the config.env file in backend/config folder as shown in the course.
+Add your config variables values in the config.env file in backend/config folder.
 
 ### Install Dependencies (Frontend)
 'cd frontend'
